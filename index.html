@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071d1a">
+  <meta name="description" content="Juego educativo sobre calidad e inocuidad en una fábrica de alimentos.">
+  <title>Misión Inocuidad: Alerta en la Planta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="startScreen" class="screen start-screen active" aria-labelledby="gameTitle">
+      <div class="hero-icon" aria-hidden="true">🏭</div>
+      <p class="eyebrow">Entrenamiento gamificado</p>
+      <h1 id="gameTitle">Misión <span>Inocuidad</span></h1>
+      <p class="intro">La planta está en alerta. Recorre el laberinto, despeja el camino y neutraliza los riesgos de calidad antes de que lleguen al consumidor.</p>
+      <label class="player-field">
+        <span>Nombre del jugador</span>
+        <input id="playerName" type="text" maxlength="22" placeholder="Escribe tu nombre" autocomplete="off">
+      </label>
+      <button id="startButton" class="primary-button" type="button">▶ Iniciar misión</button>
+      <div class="legend start-legend">
+        <span>⌨️ Flechas o WASD</span><span>🧴 Espacio para sanear</span><span>📱 Controles táctiles</span>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" aria-label="Tablero de juego">
+      <div class="game-layout">
+        <section class="board-card">
+          <header class="game-header">
+            <div>
+              <p class="eyebrow">Nivel 1 · Zona de producción</p>
+              <h2>Misión Inocuidad</h2>
+              <p id="playerGreeting" class="player-greeting"></p>
+            </div>
+            <div class="stats" aria-live="polite">
+              <span class="stat lives">❤️ <b id="livesValue">3</b></span>
+              <span class="stat score">🏆 <b id="scoreValue">0</b></span>
+              <span class="stat time">⏱️ <b id="timeValue">90</b>s</span>
+            </div>
+          </header>
+
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Riesgos neutralizados</span><b id="progressText">0/5</b></div>
+            <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          </div>
+
+          <div id="board" class="board" role="application" aria-label="Laberinto de la planta"></div>
+
+          <div class="mobile-controls" aria-label="Controles del juego">
+            <span></span><button data-move="up" aria-label="Mover arriba">▲</button><span></span>
+            <button data-move="left" aria-label="Mover a la izquierda">◀</button>
+            <button id="mobileSanitize" class="sanitize-control" aria-label="Colocar carga de saneamiento">🧴</button>
+            <button data-move="right" aria-label="Mover a la derecha">▶</button>
+            <span></span><button data-move="down" aria-label="Mover abajo">▼</button><span></span>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <article class="info-card">
+            <h3>🛡️ Objetivo</h3>
+            <p>Neutraliza los <b id="remainingValue">5</b> riesgos. Coloca una carga de saneamiento junto al peligro y aléjate antes de que se active.</p>
+          </article>
+          <article class="info-card">
+            <h3>🎮 Controles</h3>
+            <p><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> o <kbd>WASD</kbd> para moverte.</p>
+            <p><kbd>Espacio</kbd> para colocar una carga.</p>
+            <button id="sanitizeButton" class="secondary-button" type="button">🧴 Colocar carga</button>
+          </article>
+          <article class="info-card hazard-guide">
+            <h3>🔎 Riesgos de la misión</h3>
+            <div><span>💍</span> Joya en producción</div>
+            <div><span>🦠</span> Contaminación cruzada</div>
+            <div><span>🌡️</span> Temperatura fuera de control</div>
+            <div><span>🥜</span> Alérgeno sin controlar</div>
+            <div><span>📦</span> Empaque dañado</div>
+          </article>
+          <div id="feedback" class="feedback" aria-live="assertive"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="endScreen" class="screen end-screen" aria-labelledby="endTitle">
+      <div id="endIcon" class="end-icon">🏆</div>
+      <h2 id="endTitle">¡Planta protegida!</h2>
+      <p id="endMessage"></p>
+      <div class="final-score"><span>Puntuación final</span><strong id="finalScore">0</strong></div>
+      <div id="learningSummary" class="learning-summary"></div>
+      <button id="restartButton" class="primary-button" type="button">↻ Jugar de nuevo</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
